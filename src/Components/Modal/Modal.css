@@ -1,0 +1,74 @@
+.modalDialog{
+	width: 400px;
+	height: 350px;
+	margin: 0 auto;
+
+	border: none;
+	background: #e2dfdf;
+	color:rgba(41, 39, 39, .7);
+	border-radius: 15px;
+
+	position: absolute;
+	top: 270px;
+	left:300px;
+
+	overflow: hidden;
+}
+.modalForm{
+	display: flex;
+	flex-direction: column;
+
+	padding: 30px 15px;;
+}
+.modalForm_label{
+	font-family: 'Poppins';
+	font-size: 20px;
+	color: rgb(20, 19, 19);
+}
+.modalInput{
+	height: 35px;
+	background: transparent;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid rgb(20, 19, 19);
+	color: rgb(20, 19, 19);
+	font-size: 13px;
+	font-family: "Montserrat Alternates";
+	margin-bottom: 20px;
+}
+.active_buttons{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 15px;
+}
+.active_buttons .button{
+	width: 100px;
+	padding: 10px 0;
+
+	background: rgb(41, 39, 39);
+	color:#e2dfdf;
+
+	border-radius: 8px;
+
+	transition: .5s all ease;
+}
+.active_buttons .button:hover{
+	background: #52a9cc;
+}
+.cancel_button .button:hover{
+	background: #c45b5b;
+}
+.priority_select{
+	width: 140px;
+	height: 35px;
+	font-size: 15px;
+
+	padding: 5px 10px;
+	margin-bottom: 40px;
+
+	border: 1px solid rgb(41, 39, 39);
+	border-radius: 10px;
+
+	background-color: #e2dfdf;
+	color:rgb(41, 39, 39);
+}

@@ -1,0 +1,63 @@
+.task{
+	display: flex;
+	width: 800px;
+
+	padding: 20px 40px;
+	border-radius: 10px;
+
+	background: rgb(41, 39, 39);
+	color: #e2dfdf;
+	transition: all .3s ease;
+
+	position: relative;
+}
+.task:hover{
+	box-shadow: 2px 2px;
+}
+.task_info{
+	display: flex;
+	flex-direction: column;
+	padding-left: 15px;
+}
+.task_name{
+	font-size: 20px;
+}
+.task_btns{
+	width: 20px;
+	height: 20px;
+	background-color: #e2dfdf;
+	padding: 3px;
+	border-radius: 5px;
+
+	cursor: pointer;
+}
+.confirm_button{
+	display: none;
+}
+.deleting_button{
+	bottom: 20px;
+	display: none;
+}
+.prioritise_line{
+	width: 4px;
+	height: 54px;
+
+	border-radius: 5px;
+}
+.task > .confirm_buttonDiv, .task > .deleting_buttonDiv{
+	position: absolute;
+	right: 20px;
+
+	width: 20px;
+	height: 20px;
+}
+.task > .confirm_buttonDiv{
+	top: 20px;
+}
+.task > .deleting_buttonDiv{
+	bottom: 20px;
+}
+.confirm_buttonDiv > .button,
+.deleting_buttonDiv > .button{
+	background-color: transparent;
+}

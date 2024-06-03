@@ -1,0 +1,46 @@
+.comletedModalDialog{
+	width: 400px;
+	height: 350px;
+	margin: 0 auto;
+
+	padding: 15px;
+
+	border: none;
+	background: #e2dfdf;
+	color:rgba(41, 39, 39, .7);
+	border-radius: 15px;
+
+	position: absolute;
+	top: 270px;
+	left:300px;
+
+	overflow-x: auto;
+}
+.completedTask{
+	display: flex;
+	align-items: center;
+	width: 350px;
+	height: 50px;
+	padding: 15px 10px;
+
+	border-radius: 5px;
+
+	background-color: rgba(41, 39, 39);
+	color:#e2dfdf;
+}
+.completedTasks__list{
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+}
+.comletedModalDialog > h2{
+	color:rgba(41, 39, 39);
+}
+.comletedModalDialog > .button{
+	width: 20px;
+	height: 20px;
+	background-color: #e2dfdf;
+	position: absolute;
+	top: 23px;
+	right: 20px;
+}
