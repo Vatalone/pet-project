@@ -72,7 +72,7 @@ export default function Profile() {
               Statistics
             </h2>
             <Button onClick={openCompleteModal}>
-              Completed Tasks: 
+              Completed Tasks: {completedTasksArr.length}
             </Button>
             <Button>Planned Tasks</Button>
             <Button>Tasks Settings</Button>

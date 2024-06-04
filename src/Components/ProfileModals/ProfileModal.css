@@ -1,4 +1,4 @@
-.comletedModalDialog{
+.modalDialog{
 	width: 400px;
 	height: 350px;
 	margin: 0 auto;
@@ -33,10 +33,10 @@
 	flex-direction: column;
 	row-gap: 20px;
 }
-.comletedModalDialog > h2{
+.modalDialog > h2{
 	color:rgba(41, 39, 39);
 }
-.comletedModalDialog > .button{
+.modalDialog > .button{
 	width: 20px;
 	height: 20px;
 	background-color: #e2dfdf;

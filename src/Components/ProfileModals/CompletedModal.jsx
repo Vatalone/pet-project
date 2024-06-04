@@ -17,8 +17,8 @@ export default function CompletedModal({ open, setOpen }) {
   }, [open]);
 
   return (
-    <dialog className="comletedModalDialog" ref={dialog}>
-      <h2>Completed tasks: {}</h2>
+    <dialog className="modalDialog" ref={dialog}>
+      <h2>Completed tasks: {completedArr.length}</h2>
       
       <Button
         onClick={() => {
