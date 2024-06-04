@@ -21,8 +21,8 @@ const todoSlice = createSlice({
 		addCompletedTodo(state, action){
 			state.complTodos.push({
         title: action.payload.title,
-        desc: action.payload.desc,
         priority: action.payload.priority,
+				id: action.payload.id,
       })
 		},
 	},

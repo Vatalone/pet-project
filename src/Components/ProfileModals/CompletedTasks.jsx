@@ -6,7 +6,7 @@ export default function CompletedTasks({title, desc, priority}) {
   useEffect(() => {
     switch (priority) {
       case "none":
-				task.current.style.border = "5px solid #grey";
+				task.current.style.border = "5px solid grey";
         break;
       case "first":
 				task.current.style.border = "5px solid #db4f4b";

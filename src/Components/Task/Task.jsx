@@ -39,8 +39,8 @@ export default function Task({ title, desc, priority, id }) {
   function confirmTask() {
     dispatch(addCompletedTodo({
       title: title,
-      desc: desc,
       priority: stringPriority,
+      id: Math.random(),
     }))
     dispatch(removeTodo({id}));
   }

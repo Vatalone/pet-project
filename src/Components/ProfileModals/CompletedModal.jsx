@@ -32,9 +32,8 @@ export default function CompletedModal({ open, setOpen }) {
         {completedArr.map((el) => (
           <CompletedTasks
             title={el.title}
-            desc={el.desc}
             priority={el.priority}
-            key={new Date()}
+            key={el.id}
           />
         ))}
       </ul>
