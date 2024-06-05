@@ -16,6 +16,9 @@
 
 	overflow-x: auto;
 }
+.editDialog{
+	height: 200px;
+}
 .completedTask{
 	display: flex;
 	align-items: center;

@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import profLogo from "./../images/profile-logo.jpeg";
-import Button from "./Button/Button";
-import { Chart, ArcElement, DoughnutController } from "chart.js";
-import CompletedModal from "./ProfileModals/CompletedModal";
 import { useSelector } from "react-redux";
+import { Chart, ArcElement, DoughnutController } from "chart.js";
+import Button from "./Button/Button";
+import CompletedModal from "./ProfileModals/CompletedModal";
+import profLogo from "./../images/profile-logo.jpeg";
+import EditModal from "./ProfileModals/EditModal";
 
 Chart.register(DoughnutController, ArcElement);
 let chart;
 
 export default function Profile() {
-  const completedTasksArr = useSelector(state => state.todos.complTodos)
+  const completedTasksArr = useSelector((state) => state.todos.complTodos);
 
   const [openedCompleted, setOpenedCompleted] = useState(false);
+  const [openedEditName, setOpenedEditName] = useState(false);
 
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
@@ -23,7 +25,10 @@ export default function Profile() {
       data: {
         datasets: [
           {
-            data: [completedTasksArr.length, 5 > completedTasksArr.length ? 5 - completedTasksArr.length : 0],
+            data: [
+              completedTasksArr.length,
+              5 > completedTasksArr.length ? 5 - completedTasksArr.length : 0,
+            ],
             backgroundColor: [
               "rgba(166, 207, 99, 0.8)",
               "rgba(54, 162, 235, 0.8)",
@@ -106,6 +111,11 @@ export default function Profile() {
       <CompletedModal
         open={openedCompleted}
         setOpen={(cur) => setOpenedCompleted(cur)}
+      />
+      <EditModal
+        open={openedEditName}
+        setOpen={(cur) => setOpenedEditName(cur)}
+        type={'name'}
       />
     </section>
   );
