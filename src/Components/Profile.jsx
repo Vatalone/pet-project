@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { Chart, ArcElement, DoughnutController } from "chart.js";
 import Button from "./Button/Button";
 import CompletedModal from "./ProfileModals/CompletedModal";
-import profLogo from "./../images/profile-logo.jpeg";
 import EditModal from "./ProfileModals/EditModal";
+import profLogo from "./../images/profile-logo.jpeg";
+import editSVG from './../images/icons/pencil-edit-02-stroke-rounded.svg'
+import editSVGWh from './../images/icons/pencil-white.svg'
 
 Chart.register(DoughnutController, ArcElement);
 let chart;
@@ -14,6 +16,7 @@ export default function Profile() {
 
   const [openedCompleted, setOpenedCompleted] = useState(false);
   const [openedEditName, setOpenedEditName] = useState(false);
+  const [openedEditSpec, setOpenedEditSpec] = useState(false);
 
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
@@ -54,7 +57,10 @@ export default function Profile() {
             <div className="profile__logo-border">
               <img src={profLogo} alt="" className="profile__logo-img" />
             </div>
-            <div className="profile__logo-nickname">Deckstery</div>
+            <div className="profile__logo-nickname">
+              Deckstery
+              <Button onClick={(cur) => setOpenedEditName(cur)}><img src={editSVG} alt='edit'/></Button>
+            </div>
           </div>
           <div className="profile__specific">
             <h2 className="profile__specific-title profile__title">
@@ -67,6 +73,7 @@ export default function Profile() {
                 quas. Cum, enim necessitatibus! Quidem distinctio magni cum,
                 debitis repellat blanditiis vero earum ratione!
               </p>
+              <Button onClick={(cur) => setOpenedEditSpec(cur)}><img src={editSVGWh} alt='edit'/></Button>
             </div>
           </div>
         </div>
@@ -115,7 +122,12 @@ export default function Profile() {
       <EditModal
         open={openedEditName}
         setOpen={(cur) => setOpenedEditName(cur)}
-        type={'name'}
+        type={"name"}
+      />
+      <EditModal
+        open={openedEditSpec}
+        setOpen={(cur) => setOpenedEditSpec(cur)}
+        type={"specific"}
       />
     </section>
   );

@@ -223,6 +223,15 @@ header {
 
   border-radius: 15px;
 }
+.profile__logo-nickname .button,
+.profile__specific-textBlock .button{
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+
+  cursor: pointer;
+}
 .profile__specific-textBlock{
   height: 200px;
   padding: 10px;
