@@ -13,6 +13,8 @@ let chart;
 
 export default function Profile() {
   const completedTasksArr = useSelector((state) => state.todos.complTodos);
+  const profileName = useSelector((state) => state.edits.nameState);
+  const profileSpec = useSelector((state) => state.edits.specifState);
 
   const [openedCompleted, setOpenedCompleted] = useState(false);
   const [openedEditName, setOpenedEditName] = useState(false);
@@ -58,7 +60,7 @@ export default function Profile() {
               <img src={profLogo} alt="" className="profile__logo-img" />
             </div>
             <div className="profile__logo-nickname">
-              Deckstery
+              {profileName}
               <Button onClick={(cur) => setOpenedEditName(cur)}><img src={editSVG} alt='edit'/></Button>
             </div>
           </div>
@@ -68,10 +70,7 @@ export default function Profile() {
             </h2>
             <div className="profile__specific-textBlock">
               <p className="profile__specific-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi
-                excepturi vero autem consectetur itaque dignissimos aliquid
-                quas. Cum, enim necessitatibus! Quidem distinctio magni cum,
-                debitis repellat blanditiis vero earum ratione!
+                {profileSpec}
               </p>
               <Button onClick={(cur) => setOpenedEditSpec(cur)}><img src={editSVGWh} alt='edit'/></Button>
             </div>

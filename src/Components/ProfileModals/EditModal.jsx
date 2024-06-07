@@ -4,10 +4,15 @@ import "./ProfileModal.css";
 import Button from "../Button/Button";
 
 import closeImg from "./../../images/icons/cancel.svg";
+import { useDispatch } from "react-redux";
+import { editName, editSpecific, resetName, resetSpecific } from "../../store/editSlice";
 
 export default function EditModal({ type, open, setOpen }) {
   const dialog = useRef();
   const input = useRef();
+  const textarea = useRef();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (open) {
@@ -21,10 +26,25 @@ export default function EditModal({ type, open, setOpen }) {
   }, [open]);
 
   function editValue(){
-
+    let value;
+    if(type === 'name'){
+      value = input.current.value;
+      dispatch(editName({value}));
+    }
+    if(type === 'specific'){
+      value = textarea.current.value;
+      dispatch(editSpecific({value}))
+    }
+    setOpen(false);
   }
   function resetValue(){
-    
+    if(type === 'name'){
+      dispatch(resetName());
+    }
+    if(type === 'specific'){
+      dispatch(resetSpecific())
+    }
+    setOpen(false);
   }
 
   let placehold;
@@ -41,12 +61,14 @@ export default function EditModal({ type, open, setOpen }) {
             type="text"
             placeholder={placehold}
             className="editModal__input"
+            ref={input}
           />
         )}
         {type === "specific" && (
           <textarea
             placeholder={placehold}
             className="editModal__textarea"
+            ref={textarea}
           ></textarea>
         )}
       </div>
