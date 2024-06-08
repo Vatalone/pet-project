@@ -80,8 +80,8 @@ export default function EditModal({ type, open, setOpen }) {
         <img src={closeImg} className="completedClose-img" />
       </Button>
       <div className="editModal__actionsButtons">
-        <Button onClick={editValue}>Добавить</Button>
-        <Button onClick={resetValue}>Сбросить</Button>
+        <Button onClick={editValue}>Add</Button>
+        <Button onClick={resetValue}>Reset</Button>
       </div>
     </dialog>
   );

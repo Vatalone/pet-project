@@ -80,6 +80,8 @@
 }
 .editModal__actionsButtons .button {
   padding: 10px 15px;
+  width: 100px;
+
   background-color: rgb(41, 39, 39);
   color: #e2dfdf;
 
