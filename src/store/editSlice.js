@@ -5,6 +5,7 @@ const editSlice = createSlice({
 	initialState:{
 		nameState: 'Username',
 		specifState: 'Some specific about you',
+		imageState: '',
 	},
 	reducers:{
 		editName(state, action){
@@ -13,15 +14,21 @@ const editSlice = createSlice({
 		editSpecific(state, action){
 			state.specifState = action.payload.value;
 		},
+		editImage(state, action){
+			state.imageState = action.payload.value;
+		},
 		resetName(state, action){
 			state.nameState = 'Username';
 		},
 		resetSpecific(state, action){
 			state.specifState = 'Some specific about you';
+		},
+		resetImage(state, action){
+			state.imageState = '';
 		}
 	}
 })
 
-export const {editName, editSpecific, resetName, resetSpecific} = editSlice.actions;
+export const {editName, editSpecific, resetName, resetSpecific, editImage, resetImage} = editSlice.actions;
 
 export default editSlice.reducer;

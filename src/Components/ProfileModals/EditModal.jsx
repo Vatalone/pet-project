@@ -1,16 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./ProfileModal.css";
 import Button from "../Button/Button";
 
 import closeImg from "./../../images/icons/cancel.svg";
 import { useDispatch } from "react-redux";
-import { editName, editSpecific, resetName, resetSpecific } from "../../store/editSlice";
+import {
+  editName,
+  editSpecific,
+  resetName,
+  resetSpecific,
+  editImage,
+  resetImage,
+} from "../../store/editSlice";
 
 export default function EditModal({ type, open, setOpen }) {
   const dialog = useRef();
   const input = useRef();
   const textarea = useRef();
+  const image = useRef();
+
+  const [file, setFile] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -21,36 +31,51 @@ export default function EditModal({ type, open, setOpen }) {
       dialog.current.close();
     }
     if (type === "specific") {
-      dialog.current.style.height = '250px';
+      dialog.current.style.height = "250px";
     }
   }, [open]);
 
-  function editValue(){
+  function editValue() {
     let value;
-    if(type === 'name'){
+    if (type === "name") {
       value = input.current.value;
-      dispatch(editName({value}));
+      dispatch(editName({ value }));
     }
-    if(type === 'specific'){
+    if (type === "specific") {
       value = textarea.current.value;
-      dispatch(editSpecific({value}))
+      dispatch(editSpecific({ value }));
+    }
+    if (type === "image") {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const value = reader.result;
+        dispatch(editImage({value}));
+      };
     }
     setOpen(false);
   }
-  function resetValue(){
-    if(type === 'name'){
+  function resetValue() {
+    if (type === "name") {
       dispatch(resetName());
     }
-    if(type === 'specific'){
-      dispatch(resetSpecific())
+    if (type === "specific") {
+      dispatch(resetSpecific());
+    }
+    if (type === "image") {
+      dispatch(resetImage());
     }
     setOpen(false);
   }
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
 
   let placehold;
   if (type === "name") placehold = "Enter your name";
   if (type === "specific") placehold = "Enter your specific";
-
+  if (type === "specific") placehold = "Choice your image";
 
   return (
     <dialog className="modalDialog editDialog" ref={dialog}>
@@ -70,6 +95,9 @@ export default function EditModal({ type, open, setOpen }) {
             className="editModal__textarea"
             ref={textarea}
           ></textarea>
+        )}
+        {type === "image" && (
+          <input ref={image} type="file" onChange={handleFileChange} />
         )}
       </div>
       <Button

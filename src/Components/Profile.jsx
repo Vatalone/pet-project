@@ -1,24 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Chart, ArcElement, DoughnutController } from "chart.js";
 import Button from "./Button/Button";
 import CompletedModal from "./ProfileModals/CompletedModal";
 import EditModal from "./ProfileModals/EditModal";
-import profLogo from "./../images/profile-logo.jpeg";
-import editSVG from './../images/icons/pencil-edit-02-stroke-rounded.svg'
-import editSVGWh from './../images/icons/pencil-white.svg'
+import editSVG from "./../images/icons/pencil-edit-02-stroke-rounded.svg";
+import editSVGWh from "./../images/icons/pencil-white.svg";
 
 Chart.register(DoughnutController, ArcElement);
 let chart;
 
 export default function Profile() {
+  //массив с выполненными задачами из глобального стейта
   const completedTasksArr = useSelector((state) => state.todos.complTodos);
+
+  //имя и описание профиля из глобального стейта
   const profileName = useSelector((state) => state.edits.nameState);
   const profileSpec = useSelector((state) => state.edits.specifState);
+  const profileImage = useSelector((state) => state.edits.imageState);
 
+  //состояние модальных окон
   const [openedCompleted, setOpenedCompleted] = useState(false);
   const [openedEditName, setOpenedEditName] = useState(false);
   const [openedEditSpec, setOpenedEditSpec] = useState(false);
+  const [openedEditImage, setOpenedEditImage] = useState(false);
+
+  //
+  const logo = useRef();
+  const logoBtn = useRef();
 
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
@@ -44,10 +53,19 @@ export default function Profile() {
         ],
       },
     });
+
+    logoBtn.current.style.display = "none";
   });
 
   function openCompleteModal() {
     setOpenedCompleted(true);
+  }
+
+  function logoMouseEnter() {
+    logoBtn.current.style.display = "block";
+  }
+  function logoMouseLeave() {
+    logoBtn.current.style.display = "none";
   }
 
   return (
@@ -56,12 +74,24 @@ export default function Profile() {
         <div className="profile__desc">
           <div className="profile__logo">
             <h2 className="profile__logo-title profile__title">Logo</h2>
-            <div className="profile__logo-border">
-              <img src={profLogo} alt="" className="profile__logo-img" />
+            <div
+              className="profile__logo-border"
+              ref={logo}
+              onMouseEnter={logoMouseEnter}
+              onMouseLeave={logoMouseLeave}
+            >
+              <img src={profileImage} alt="" className="profile__logo-img" />
+              <div className="logo-block" ref={logoBtn}>
+                <Button onClick={() => setOpenedEditImage(true)}>
+                  <img src={editSVGWh} alt="" />
+                </Button>
+              </div>
             </div>
             <div className="profile__logo-nickname">
               {profileName}
-              <Button onClick={(cur) => setOpenedEditName(cur)}><img src={editSVG} alt='edit'/></Button>
+              <Button onClick={(cur) => setOpenedEditName(cur)}>
+                <img src={editSVG} alt="edit" />
+              </Button>
             </div>
           </div>
           <div className="profile__specific">
@@ -69,10 +99,10 @@ export default function Profile() {
               Specifications
             </h2>
             <div className="profile__specific-textBlock">
-              <p className="profile__specific-text">
-                {profileSpec}
-              </p>
-              <Button onClick={(cur) => setOpenedEditSpec(cur)}><img src={editSVGWh} alt='edit'/></Button>
+              <p className="profile__specific-text">{profileSpec}</p>
+              <Button onClick={(cur) => setOpenedEditSpec(cur)}>
+                <img src={editSVGWh} alt="edit" />
+              </Button>
             </div>
           </div>
         </div>
@@ -127,6 +157,11 @@ export default function Profile() {
         open={openedEditSpec}
         setOpen={(cur) => setOpenedEditSpec(cur)}
         type={"specific"}
+      />
+      <EditModal
+        open={openedEditImage}
+        setOpen={(cur) => setOpenedEditImage(cur)}
+        type={"image"}
       />
     </section>
   );
