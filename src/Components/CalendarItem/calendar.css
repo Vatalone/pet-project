@@ -1,0 +1,58 @@
+.calendar__list-item:hover{
+	transform: translate(-5px, -5px);
+	box-shadow: 9px 9px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.calendar__list-item{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 8px;
+	background-color: rgb(41, 39, 39);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: #e2dfdf;
+	font-size: 20px;
+	font-weight: 500;
+
+	transition: all ease .5s;
+}
+.calendar__list-item .button{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+.calendar__modal{
+	width: 400px;
+	height: 350px;
+	margin: 0 auto;
+
+	border: none;
+	background: #e2dfdf;
+	color:rgba(41, 39, 39);
+	border-radius: 15px;
+	padding: 20px;
+
+	position: absolute;
+	z-index: 999;
+	top: 270px;
+	left:300px;
+
+	overflow: hidden;
+}
+.calendar__modal > h2 {
+	margin-bottom: 20px;
+}
+.calendar__modal .button{
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	position: absolute;
+	top: 28px;
+	right: 20px;
+}

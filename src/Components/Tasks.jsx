@@ -40,6 +40,7 @@ export default function Tasks() {
               title={el.title}
               desc={el.desc}
               priority={el.sel}
+              date={el.date}
               id={el.id}
             />
           ))}

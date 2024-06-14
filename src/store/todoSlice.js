@@ -12,6 +12,7 @@ const todoSlice = createSlice({
         title: action.payload.title,
         desc: action.payload.desc,
         sel: action.payload.sel,
+				date: action.payload.date,
         id: new Date().toISOString(),
       })
 		},

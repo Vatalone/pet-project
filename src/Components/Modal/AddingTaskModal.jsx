@@ -3,18 +3,21 @@ import "./Modal.css";
 import { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/todoSlice";
+import { addDate } from "../../store/dateSlice";
 
 export default function Modal({ open, setOpen, hasTasks }) {
   const dialog = useRef();
   const title = useRef();
   const desc = useRef();
   const sel = useRef();
+  const date = useRef();
   const dispatch = useDispatch();
 
   // Значения полей ввода - перменные
   let valTitle;
   let valDesc;
   let valSel;
+  let valDate;
 
   useEffect(() => {
     if (open) {
@@ -34,6 +37,7 @@ export default function Modal({ open, setOpen, hasTasks }) {
     // сбросить значения полей ввода
     title.current.value = "";
     desc.current.value = "";
+    date.current.value = '';
   }
   // добавить задачу
   function addTask(e) {
@@ -42,6 +46,7 @@ export default function Modal({ open, setOpen, hasTasks }) {
     valTitle = title.current.value;
     valDesc = desc.current.value;
     valSel = sel.current.value;
+    valDate = Number(date.current.value.slice(-2));
 
     // если строка с названием задачи заполнена, то добавляем в массив объект с названнием и описанием задачи
     if (valTitle != "") {
@@ -49,18 +54,24 @@ export default function Modal({ open, setOpen, hasTasks }) {
         addTodo({
           title: valTitle,
           desc: valDesc,
-          sel: valSel
+          sel: valSel,
+          date: valDate,
         })
       );
+      dispatch(addDate({
+        date: valDate,
+        title: valTitle,
+        desc: valDesc,
+      }))
 
       hasTasks("isTasks");
       dialog.current.close();
       setOpen(false);
     }
-
     // сбросить значения полей ввода
     title.current.value = "";
     desc.current.value = "";
+    date.current.value = '';
   }
   return (
     <dialog className="modalDialog" ref={dialog}>
@@ -91,6 +102,8 @@ export default function Modal({ open, setOpen, hasTasks }) {
           <option value="3">Third priority</option>
           <option value="4">None priority</option>
         </select>
+
+        <input type="date" className="modalInput" ref={date} />
 
         <div className="active_buttons">
           <Button onClick={(event) => addTask(event)}>Add</Button>

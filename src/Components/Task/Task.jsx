@@ -5,8 +5,9 @@ import { useEffect, useRef } from "react";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { removeTodo, addCompletedTodo } from "../../store/todoSlice";
+import { removeDate } from "../../store/dateSlice";
 
-export default function Task({ title, desc, priority, id }) {
+export default function Task({ title, desc, priority, date, id }) {
   const confirm = useRef();
   const deleting = useRef();
   const prioriteLine = useRef();
@@ -43,9 +44,17 @@ export default function Task({ title, desc, priority, id }) {
       id: Math.random(),
     }))
     dispatch(removeTodo({id}));
+    dispatch(removeDate({
+      date: date,
+      title: title,
+    }))
   }
   function deleteTask() {
     dispatch(removeTodo({id}));
+    dispatch(removeDate({
+      date: date,
+      title: title,
+    }))
   }
 
   return (
