@@ -49,7 +49,7 @@ export default function Modal({ open, setOpen, hasTasks }) {
     valDate = Number(date.current.value.slice(-2));
 
     // если строка с названием задачи заполнена, то добавляем в массив объект с названнием и описанием задачи
-    if (valTitle != "") {
+    if (valTitle != "" && valDate != '') {
       dispatch(
         addTodo({
           title: valTitle,
@@ -71,6 +71,7 @@ export default function Modal({ open, setOpen, hasTasks }) {
     // сбросить значения полей ввода
     title.current.value = "";
     desc.current.value = "";
+    sel.current.value = '4';
     date.current.value = '';
   }
   return (
@@ -96,14 +97,14 @@ export default function Modal({ open, setOpen, hasTasks }) {
           placeholder="Description"
           ref={desc}
         />
-        <select className="priority_select" defaultValue={"noneP"} ref={sel}>
+        <select className="priority_select" ref={sel}>
           <option value="1">First priority</option>
           <option value="2">Second priority</option>
           <option value="3">Third priority</option>
-          <option value="4">None priority</option>
+          <option value="4" selected>None priority</option>
         </select>
 
-        <input type="date" className="modalInput" ref={date} />
+        <input type="date" className="modalInput" ref={date}/>
 
         <div className="active_buttons">
           <Button onClick={(event) => addTask(event)}>Add</Button>

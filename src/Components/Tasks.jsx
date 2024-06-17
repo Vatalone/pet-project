@@ -15,7 +15,7 @@ export default function Tasks() {
     if (todosArr.length == 0) {
       setHasTasks("noTasks");
     } else {
-      const sortedArray = [...todosArr].sort((a, b) => a.sel - b.sel);
+      const sortedArray = [...todosArr].sort((a, b) => a.sel - b.sel).filter(el => el.date === Number(new Date().getDate()));
       setSortedTodos(sortedArray);
     }
   }, [todosArr]);
